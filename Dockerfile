@@ -1,5 +1,8 @@
 FROM ubuntu:14.04
 
+ARG DEBIAN_FRONTEND=noninteractive
+ENV LANG=C.UTF-8
+
 # Install dependencies 
 RUN apt-get update \
   && apt-get install --yes --quiet --no-install-recommends \

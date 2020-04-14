@@ -1,5 +1,8 @@
 FROM ubuntu:14.04
 
+ARG OSRA_VERSION=2.0.1
+ARG GOCR_VERSION=0.50pre-patched
+ARG OCRAD_VERSION=0.27
 ARG DEBIAN_FRONTEND=noninteractive
 ENV LANG=C.UTF-8
 
@@ -9,17 +12,14 @@ RUN apt-get update \
     libgraphicsmagick++-dev \
     libnetpbm10-dev \
     libocrad-dev \
-    libopenbabel-dev  \
-    libpotrace0  \
-    libpotrace-dev  \
+    libopenbabel-dev \
+    libpotrace0 \
+    libpotrace-dev \
     libtclap-dev \
     openbabel \
   && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install osra
-ARG OCRAD_VERSION=0.27
-ARG GOCR_VERSION=0.50pre-patched
-ARG OSRA_VERSION=2.0.1
 RUN build_deps="\
     build-essential \
     lzip \

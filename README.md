@@ -1,28 +1,43 @@
-# osra
+# daverona/osra
 
-This repository provides Docker image converting a chemical compound in PDF/PNG/TIFF format to SMI (SMILES) file.
+[![pipeline status](https://gitlab.com/daverona/docker/osra/badges/master/pipeline.svg)](https://gitlab.com/daverona/docker/osra/commits/master)
 
-To be exact this repository gives Docker image wrapping *Optical Structure Recognition Application* (or *OSRA* for short).
+* GitLab source respository: [https://gitlab.com/daverona/docker/osra](https://gitlab.com/daverona/docker/osra)
+* Docker Hub repository: [https://hub.docker.com/r/daverona/osra](https://hub.docker.com/r/daverona/osra)
 
-## Docker image
+This is a Docker image of OSRA (Optical Structure Recognition Application). This image provides:
 
-To build Docker image out of this repository:
+* [OSRA](https://sourceforge.net/projects/osra/) 2.1.0_1
+
+## Installation
+
+Install [Docker](https://hub.docker.com/search/?type=edition&offering=community) if you don't have one. 
+Then pull the image from Docker Hub repository:
+
+```bash
+docker image pull daverona/osra
+```
+
+or build the image:
 
 ```bash
 docker image build \
-  --tag arontier/osra:2.1.0-1 \
+  --tag daverona/osra \
   .
 ```
 
 ## Quickstart
 
-To get help:
+Run the container:
 
 ```bash
-docker container run \
-  --rm \
-  arontier/osra:2.1.0-1
+docker container run --rm \
+  daverona/osra
 ```
+
+It will show the help of OSRA.
+
+## Usage
 
 Assume you want to read `/path/to/input/sample.png`
 to produce an SMI file, say `/path/to/output/sample.smi`.
@@ -34,7 +49,7 @@ docker container run \
   --rm \
   --volume /path/to/input:/input \
   --volume /path/to/output:/output \
-  arontier/osra:2.1.0-1 \
+  daverona/osra \
   osra \
     --write /output/sample.smi \
     /input/sample.png 

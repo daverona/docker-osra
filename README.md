@@ -7,7 +7,7 @@
 
 This is a Docker image of OSRA (Optical Structure Recognition Application). This image provides:
 
-* [OSRA](https://sourceforge.net/projects/osra/) 2.1.0_1
+* [OSRA](https://sourceforge.net/projects/osra/) 2.1.0-1
 
 ## Installation
 

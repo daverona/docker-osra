@@ -2,45 +2,36 @@
 
 [![pipeline status](https://gitlab.com/daverona/docker/osra/badges/master/pipeline.svg)](https://gitlab.com/daverona/docker/osra/commits/master)
 
+This is a repository for Docker images of OSRA (Optical Structure Recognition Application).
+
 * GitLab source respository: [https://gitlab.com/daverona/docker/osra](https://gitlab.com/daverona/docker/osra)
 * Docker Hub repository: [https://hub.docker.com/r/daverona/osra](https://hub.docker.com/r/daverona/osra)
 
-This is a Docker image of OSRA (Optical Structure Recognition Application). This image provides:
+Available versions are:
 
-* [OSRA](https://sourceforge.net/projects/osra/) 2.1.0-1
+* [2.1.0-1](https://gitlab.com/daverona/docker/osra/-/blob/2.1.0-1/Dockerfile), [latest](https://gitlab.com/daverona/docker/osra/-/blob/latest/Dockerfile)
 
 ## Installation
 
-Install [Docker](https://hub.docker.com/search/?type=edition&offering=community) if you don't have one. 
-Then pull the image from Docker Hub repository:
+Pull the image from Docker Hub repository:
 
 ```bash
 docker image pull daverona/osra
 ```
 
-or build the image:
+## Quick Start
 
-```bash
-docker image build \
-  --tag daverona/osra \
-  .
-```
-
-## Quickstart
-
-Run the container:
+To see the help:
 
 ```bash
 docker container run --rm \
   daverona/osra
 ```
 
-It will show the help of OSRA.
-
 ## Usage
 
 Assume you want to read `/path/to/input/sample.png`
-to produce an SMI file, say `/path/to/output/sample.smi`.
+to produce an SMI file `/path/to/output/sample.smi`.
 
 To achieve this:
 
@@ -59,4 +50,3 @@ docker container run \
 
 * OSRA: [https://sourceforge.net/projects/osra/](https://sourceforge.net/projects/osra/)
 * OSRA Online: [https://cactus.nci.nih.gov/cgi-bin/osra/index.cgi](https://cactus.nci.nih.gov/cgi-bin/osra/index.cgi)
-* Docker image by `berlinguyinca/osra`: [https://hub.docker.com/r/berlinguyinca/osra/](https://hub.docker.com/r/berlinguyinca/osra/)

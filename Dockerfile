@@ -48,13 +48,14 @@ RUN apk add --no-cache --virtual=build_deps \
     tclap-dev \
     tesseract-ocr-dev \
     zlib-dev \
+    boost-dev \
 # Install openbabel
   && wget --quiet --output-document=- http://downloads.sourceforge.net/project/osra/openbabel-patched/openbabel-$OPENBABEL_VERSION.tgz | tar -zxvf - -C /tmp \
   && mkdir -p /tmp/openbabel-$OPENBABEL_VERSION/build && cd /tmp/openbabel-$OPENBABEL_VERSION/build \
   && cmake .. 
-RUN wget --quiet --output-document=- http://downloads.sourceforge.net/project/osra/openbabel-patched/openbabel-2.3.2-patched.tgz | tar -zxvf - -C /tmp \
-  && mkdir -p /tmp/openbabel-2.3.2-patched/build && cd /tmp/openbabel-2.3.2-patched/build \
-  && cmake .. 
+#RUN wget --quiet --output-document=- http://downloads.sourceforge.net/project/osra/openbabel-patched/openbabel-2.3.2-patched.tgz | tar -zxvf - -C /tmp \
+#  && mkdir -p /tmp/openbabel-2.3.2-patched/build && cd /tmp/openbabel-2.3.2-patched/build \
+#  && cmake .. 
 #  && make -j2 && make test && make install 
 #    build-essential \
 #    cmake \
@@ -75,15 +76,15 @@ RUN wget --quiet --output-document=- http://downloads.sourceforge.net/project/os
 #  && apt-get clean && rm -rf /var/lib/apt/lists/* \
 # Install ocrad
 
-RUN wget --quiet --output-document=- http://ftp.gnu.org/gnu/ocrad/ocrad-$OCRAD_VERSION.tar.lz | lzip -dc -o - | tar -xvf - -C /tmp \
-  && cd /tmp/ocrad-$OCRAD_VERSION \
-  && ./configure CXXFLAGS="-Wall -W -O2 -pthread" \
-  && make && make install \
+#RUN wget --quiet --output-document=- http://ftp.gnu.org/gnu/ocrad/ocrad-$OCRAD_VERSION.tar.lz | lzip -dc -o - | tar -xvf - -C /tmp \
+#  && cd /tmp/ocrad-$OCRAD_VERSION \
+#  && ./configure CXXFLAGS="-Wall -W -O2 -pthread" \
+#  && make && make install \
 # Install gocr
-  && wget --quiet --output-document=- http://downloads.sourceforge.net/project/osra/gocr-patched/gocr-$GOCR_VERSION.tgz | tar -zxvf - -C /tmp \
-  && cd /tmp/gocr-$GOCR_VERSION \
-  && ./configure CFLAGS="-g -O2 -pthread" \
-  && make libs && make all install
+#  && wget --quiet --output-document=- http://downloads.sourceforge.net/project/osra/gocr-patched/gocr-$GOCR_VERSION.tgz | tar -zxvf - -C /tmp \
+#  && cd /tmp/gocr-$GOCR_VERSION \
+#  && ./configure CFLAGS="-g -O2 -pthread" \
+#  && make libs && make all install
 # Install osra
 #RUN wget --quiet --output-document=- http://downloads.sourceforge.net/project/osra/osra/${OSRA_VERSION%-*}/osra-$OSRA_VERSION.tgz | tar -zxvf - -C /tmp \
 #  && cd /tmp/osra-$OSRA_VERSION \

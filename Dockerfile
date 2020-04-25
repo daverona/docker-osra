@@ -31,7 +31,6 @@ RUN apk add --no-cache \
 #    tesseract-ocr \ 
 #    tesseract-ocr-eng \
 #    zlib1g \
-#  && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 #    build-essential \
 #    cmake \
@@ -48,8 +47,6 @@ RUN apk add --no-cache \
 #    lzip \
 #    wget \
 #    zlib1g-dev" \
-#  && apt-get install --yes --quiet $build_deps \
-#  && apt-get clean && rm -rf /var/lib/apt/lists/* \
 
 # Install osra and its dependencies
 RUN apk add --no-cache --virtual=build_deps \
@@ -73,11 +70,11 @@ RUN apk add --no-cache --virtual=build_deps \
   && wget --quiet --output-document=- http://downloads.sourceforge.net/project/osra/openbabel-patched/openbabel-$OPENBABEL_VERSION.tgz | tar -zxvf - -C /tmp \
   && mkdir -p /tmp/openbabel-$OPENBABEL_VERSION/build \
   && cd /tmp/openbabel-$OPENBABEL_VERSION/build \
-  && sed -i -e "27s/tr1::shared_ptr/shared_ptr/" ../include/openbabel/shared_ptr.h \
+  && sed -i "27s/tr1::shared_ptr/shared_ptr/" ../include/openbabel/shared_ptr.h \
   && sed -i -e "117s/make_pair/pair/" -e "147s/make_pair/pair/" ../src/ops/sort.cpp \
-  && sed -i -e "83s/iss >> value/(bool)(iss >> value)/" ../src/ops/conformer.cpp \
-  && sed -i -e "642s/ifs!=NULL/ifs ? true : false/" ../src/formats/chemkinformat.cpp \
-  && sed -i -e "82s/*ofs/*ofs ? true : false/" ../src/formats/textformat.cpp \
+  && sed -i "83s/iss >> value/(bool)(iss >> value)/" ../src/ops/conformer.cpp \
+  && sed -i "642s/ifs!=NULL/ifs ? true : false/" ../src/formats/chemkinformat.cpp \
+  && sed -i "82s/*ofs/*ofs ? true : false/" ../src/formats/textformat.cpp \
   && cmake .. \
   && make -j $(nproc) && make test && make install \
 # Install ocrad

@@ -19,40 +19,11 @@ RUN apk add --no-cache \
     potrace \
     tesseract-ocr \
     zlib 
-#    libcairo2 \
-#    libgraphicsmagick++3 \
-#    libgraphicsmagick3 \
-#    libnetpbm10 \
-#    libpoppler-cpp0 \
-#    libpoppler44 \
-#    libpotrace0 \
-#    libtesseract3 \
-#    libxml2 \
-#    tesseract-ocr \ 
-#    tesseract-ocr-eng \
-#    zlib1g \
-
-#    build-essential \
-#    cmake \
-#    libcairo2-dev \
-#    libeigen3-dev \
-#    libgraphicsmagick++1-dev \
-#    libgraphicsmagick1-dev \
-#    libnetpbm10-dev \
-#    libpoppler-cpp-dev \
-#    libpoppler-dev \
-#    libpotrace-dev \
-#    libtclap-dev \
-#    libtesseract-dev \
-#    lzip \
-#    wget \
-#    zlib1g-dev" \
 
 # Install osra and its dependencies
 RUN apk add --no-cache --virtual=build_deps \
 # Install build and fetch dependencies
     bash \
-#    boost-dev \
     build-base \
     cairo-dev \
     cmake \
@@ -86,12 +57,12 @@ RUN apk add --no-cache --virtual=build_deps \
   && wget --quiet --output-document=- http://downloads.sourceforge.net/project/osra/gocr-patched/gocr-$GOCR_VERSION.tgz | tar -zxvf - -C /tmp \
   && cd /tmp/gocr-$GOCR_VERSION \
   && ./configure CFLAGS="-g -O2 -pthread" \
-  && make  libs && make -j $(nproc) all install \
+  && make libs && make all install \
 # Install osra
   && wget --quiet --output-document=- http://downloads.sourceforge.net/project/osra/osra/${OSRA_VERSION%-*}/osra-$OSRA_VERSION.tgz | tar -zxvf - -C /tmp \
   && cd /tmp/osra-$OSRA_VERSION \
   && ./configure --with-tesseract CXXFLAGS="-g -O2 -pthread" \
-  && make -j $(nproc) all install \
+  && make all install \
   && cd / && rm -rf /tmp/* \
 # Uninstall build and fetch dependencies
   && apk del --no-cache build_deps
@@ -99,3 +70,32 @@ RUN apk add --no-cache --virtual=build_deps \
 WORKDIR /var/local
 
 CMD ["osra", "--help"]
+
+#    libcairo2 \
+#    libgraphicsmagick++3 \
+#    libgraphicsmagick3 \
+#    libnetpbm10 \
+#    libpoppler-cpp0 \
+#    libpoppler44 \
+#    libpotrace0 \
+#    libtesseract3 \
+#    libxml2 \
+#    tesseract-ocr \ 
+#    tesseract-ocr-eng \
+#    zlib1g \
+
+#    build-essential \
+#    cmake \
+#    libcairo2-dev \
+#    libeigen3-dev \
+#    libgraphicsmagick++1-dev \
+#    libgraphicsmagick1-dev \
+#    libnetpbm10-dev \
+#    libpoppler-cpp-dev \
+#    libpoppler-dev \
+#    libpotrace-dev \
+#    libtclap-dev \
+#    libtesseract-dev \
+#    lzip \
+#    wget \
+#    zlib1g-dev" \

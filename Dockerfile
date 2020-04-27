@@ -50,7 +50,8 @@ RUN build_deps="\
   && apt-get install --yes --quiet --no-install-recommends $build_deps \
 # Install openbabel
   && wget --quiet --output-document=- http://downloads.sourceforge.net/project/osra/openbabel-patched/openbabel-$OPENBABEL_VERSION.tgz | tar -zxvf - -C /tmp \
-  && mkdir -p /tmp/openbabel-$OPENBABEL_VERSION/build && cd /tmp/openbabel-$OPENBABEL_VERSION/build \
+  && mkdir -p /tmp/openbabel-$OPENBABEL_VERSION/build \
+  && cd /tmp/openbabel-$OPENBABEL_VERSION/build \
   && cmake .. \
   && make -j $(nproc) && make test && make install \
 # Install ocrad

@@ -1,12 +1,30 @@
 FROM ubuntu:14.04
 
+ARG DEBIAN_FRONTEND=noninteractive
+ENV LANG=C.UTF-8
+
+RUN apt-get update \
+  && apt-get install --yes --quiet --no-install-recommends \
+    ghostscript \
+    graphicsmagick \
+    libcairo2 \
+    libgraphicsmagick++3 \
+    libgraphicsmagick3 \
+    libnetpbm10 \
+    libpoppler-cpp0 \
+    libpoppler44 \
+    libpotrace0 \
+    libtesseract3 \
+    libxml2 \
+    tesseract-ocr \
+    tesseract-ocr-eng \
+    zlib1g \
+  && apt-get clean && rm -rf /var/lib/apt/lists/*
+
 ARG OSRA_VERSION=2.1.0-1
 ARG GOCR_VERSION=0.50pre-patched
 ARG OCRAD_VERSION=0.23
 ARG OPENBABEL_VERSION=2.3.2-tr1-memory
-
-ENV LANG=C.UTF-8
-ARG DEBIAN_FRONTEND=noninteractive
 
 # Install osra and its dependencies
 RUN build_deps="\
@@ -26,23 +44,8 @@ RUN build_deps="\
     wget \
     zlib1g-dev" \
   && apt-get update \
+  && apt-get install --yes --quiet $build_deps \
   # Install build and fetch dependencies
-  && apt-get install --yes --quiet --no-install-recommends \
-    ghostscript \
-    graphicsmagick \
-    libcairo2 \
-    libgraphicsmagick++3 \
-    libgraphicsmagick3 \
-    libnetpbm10 \
-    libpoppler-cpp0 \
-    libpoppler44 \
-    libpotrace0 \
-    libtesseract3 \
-    libxml2 \
-    tesseract-ocr \
-    tesseract-ocr-eng \
-    zlib1g \
-    $build_deps \
   # Install openbabel
   && wget --quiet --output-document=- http://downloads.sourceforge.net/project/osra/openbabel-patched/openbabel-$OPENBABEL_VERSION.tgz | tar -zxvf - -C /tmp \
   && mkdir -p /tmp/openbabel-$OPENBABEL_VERSION/build \

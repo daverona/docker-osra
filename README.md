@@ -2,7 +2,7 @@
 
 [![pipeline status](https://gitlab.com/daverona/docker/osra/badges/master/pipeline.svg)](https://gitlab.com/daverona/docker/osra/commits/master)
 
-This is a repository for Docker images of OSRA (Optical Structure Recognition Application).
+This is a repository for Docker images of [OSRA](https://sourceforge.net/projects/osra/) (Optical Structure Recognition Application).
 
 * GitLab source respository: [https://gitlab.com/daverona/docker/osra](https://gitlab.com/daverona/docker/osra)
 * Docker Hub repository: [https://hub.docker.com/r/daverona/osra](https://hub.docker.com/r/daverona/osra)

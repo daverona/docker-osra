@@ -46,6 +46,39 @@ docker container run \
     /input/sample.png 
 ```
 
+Assume you want to convert all compound pictures in `/path/to/input/sample.pdf`
+to SMILES strings in a single SMI file `/path/to/output/sample.smi`.  
+
+First convert PDF file `sample.pdf` to TIFF file `sample.tiff`:
+
+```bash
+docker container run \
+  --rm \
+  --volume /path/to/input:/input \
+  --volume /path/to/output:/output \
+  daverona/osra \
+  gm convert \
+    -density 300 \
+    /input/sample.pdf \
+    /output.sample.tiff
+```
+
+Then read `sample.tiff` with osra:
+
+```bash
+docker container run \
+  --rm \
+  --volume /path/to/input:/input \
+  --volume /path/to/output:/output \
+  daverona/osra \
+    --page \
+    --coordinates \
+    --print \
+    --output /output/sample. \
+    --write /output/sample.smi \
+    /input/sample.tiff
+```
+
 ## References
 
 * OSRA: [https://sourceforge.net/projects/osra/](https://sourceforge.net/projects/osra/)

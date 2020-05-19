@@ -3,22 +3,20 @@
 # DOCKERHUB_NAMESPACE namespace
 # DOCKERHUB_IMAGE     image
 
-image: docker:19.03.8
-
-services:
-  - docker:19.03.8-dind
+default:
+  image: docker:19.03.8
+  services:
+    - docker:19.03.8-dind
+  before_script:
+    - docker version
+    - docker login --username gitlab-ci-token --password $CI_JOB_TOKEN $CI_REGISTRY
+  after_script:
+    - docker logout $CI_REGISTRY
 
 stages:
   - build
   - release
   - publish
-
-before_script:
-  - docker version
-  - docker login --username gitlab-ci-token --password $CI_JOB_TOKEN $CI_REGISTRY
-
-after_script:
-  - docker logout $CI_REGISTRY
 
 build:
   stage: build

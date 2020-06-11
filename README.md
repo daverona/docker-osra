@@ -1,4 +1,4 @@
-# daverona/osra
+# daverona/osra <!-- docker osra docker -->
 
 [![pipeline status](https://gitlab.com/daverona/docker/osra/badges/master/pipeline.svg)](https://gitlab.com/daverona/docker/osra/commits/master)
 
@@ -9,7 +9,7 @@ This is a repository for Docker images of [OSRA](https://sourceforge.net/project
 
 Available versions are:
 
-* [2.1.0-1](https://gitlab.com/daverona/docker/osra/-/blob/2.1.0-1/Dockerfile), [latest](https://gitlab.com/daverona/docker/osra/-/blob/latest/Dockerfile)
+* [2.1.0-1](https://gitlab.com/daverona/docker/osra/-/blob/2.1.0-1/Dockerfile), [latest](https://gitlab.com/daverona/docker/osra/-/blob/2.1.0-1/Dockerfile)
 
 ## Installation
 
